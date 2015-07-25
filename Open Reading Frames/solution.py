@@ -10,8 +10,7 @@ def read(link):
 	dnaReverse =  ''.join(result)
 	
 	dnaList.append(dnaReverse)
-
-
+	#print dnaList
 	DNA_codon_table = { 'TTT': 'F',      'CTT': 'L',      'ATT': 'I',      'GTT': 'V',
 						'TTC': 'F',      'CTC': 'L',      'ATC': 'I',      'GTC': 'V',
 						'TTA': 'L',      'CTA': 'L',      'ATA': 'I',      'GTA': 'V',
@@ -37,7 +36,7 @@ def read(link):
 			result = ''
 			#start = dna.find('ATG')
 			#print 'start:',start
-			check = 'GOO'
+			check = 'ATG'
 			counter = 0 
 			stopped = True
 			while check != 'TAG' and check != 'TGA' and check != 'TAA' and len(check) == 3: 
@@ -50,14 +49,30 @@ def read(link):
 					stopped = False
 			if stopped:
 				listResult.append(result)
-			dna = dna[start+1:]
+			dna = dna[start+3:]
 			#print '*** dna ***', dna
 			#print len(dna)
 	
 	for x in list(set(listResult)):
-		print x  
+		print x
 
-read('rosalind_orf.txt')
+result = read('test.txt')
+
+'''
+lst1 = ['MPAGGRFPQNFRPFCWTLFIGSEGQARLQIQGCGLLGPGRTVGGRNKMLGRVRDASLYFAQARGFSLSDVAGLVLYYTGLPLARTARSKRRLLAGH', 'MLGRVRDASLYFAQARGFSLSDVAGLVLYYTGLPLARTARSKRRLLAGH', 'MQVYILRKLGVFPCPM', 'M', 'MPGGHYKTKQKVQRLSTDYGEVHDLYRVATR', 'MAKFTIFTE', 'MCSLLGY', 'MARITRSPRGGSHRSAPRLGCTKDSSNFLPLCVAIKNVDYLHTLQRKLA', 'MRRQ', 'MVDCEVYK', 'MLTVGQILLTL']
+lst2 = ['MRDASYKWATLTICRPHNRPYSGLIIQMPETRLLCKVTGGASYTGKTSRPV', 'MQVTSGPL', 'MPETRLLCKVTGGASYTGKTSRPV', 'MEVVDVLNSHTERQKIATILRAAQPRSTAVAAAPRAPCYPRHSRSAGSKAQ', 'MNTWRSSRSLPSSYSVKIVNFAIICRQPLDLLLRFVMPSGHEMFLVPRKQSSLGSGRPSERQTSVIENKSSYIGQGKTPSLRKI', 'MAKFTIFTE', 'MPSGHEMFLVPRKQSSLGSGRPSERQTSVIENKSSYIGQGKTPSLRKI', 'MKCS', 'MFLVPRKQSSLGSGRPSERQTSVIENKSSYIGQGKTPSLRKI']
+lst3 = lst1 + lst2 
+
+found = False
+for x in lst3:
+	for y in result:
+		if x == y:
+			found = True
+			break 
+	if not found :
+		print "*****ERRROOOORRRRR******:",x
+'''
+
 
 
 
